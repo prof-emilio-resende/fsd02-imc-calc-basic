@@ -10,14 +10,18 @@
                 <div class="form">
                     <div class="row">
                         <label>Altura</label>
-                        <input id="altura" value="0.00" placeholder="0.00" />
+                        <input id="height" value="0.00" placeholder="0.00" />
                     </div>
                     <div class="row">
                         <label>Peso</label>
-                        <input id="peso" value="0.00" placeholder="0.00" />
+                        <input id="weight" value="0.00" placeholder="0.00" />
                     </div>
                     <div class="actions">
-                        <button type="button" class="primary-action">Calcular</button>
+                        <button type="button" 
+                                class="primary-action"
+                                onclick="calculateImc()">
+                                Calcular
+                        </button>
                     </div>
                 </div>
             </div>
