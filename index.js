@@ -35,14 +35,22 @@ function renderText(text, targetId) {
     document.getElementById(targetId).innerHTML = text;
 }
 
-function calculateImc() {
-    var weight = parseFloat(document.getElementById("weight").value);
-    var height = parseFloat(document.getElementById("height").value);
-    
-    renderText(new Dietician(height, weight).imc(), "imc");
+function buildCalculateImc() {
+    var weightElement = document.getElementById("weight");
+    var heightElement = document.getElementById("height");
+
+    return function(evt) {
+        console.log(evt);
+        var weight = parseFloat(weightElement.value);
+        var height = parseFloat(heightElement.value);
+        renderText(new Dietician(height, weight).imc(), "imc");
+    }
 }
 
+console.log('not loaded');
+
 window.onload = function() {
+    console.log('loading...');
     var btn = document.querySelector(".data .form .actions button.primary-action");
-    btn.addEventListener("click", calculateImc);
+    btn.addEventListener("click", buildCalculateImc());
 }

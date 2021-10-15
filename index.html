@@ -1,32 +1,35 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Calculadora IMC FIT</title>
-        <link href="index.css" rel="stylesheet" />
-    </head>
-    <body>
-        <div class="container">
-            <div class="data">
-                <div class="form">
-                    <div class="row">
-                        <label>Altura</label>
-                        <input id="height" value="0.00" placeholder="0.00" />
-                    </div>
-                    <div class="row">
-                        <label>Peso</label>
-                        <input id="weight" value="0.00" placeholder="0.00" />
-                    </div>
-                    <div class="actions">
-                        <button type="button" class="primary-action">
-                            Calcular
-                        </button>
-                    </div>
+
+<head>
+    <title>Calculadora IMC FIT</title>
+    <link href="index.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="data">
+            <div class="form">
+                <div class="row">
+                    <label>Altura</label>
+                    <input id="height" name="height" value="0.00" placeholder="0.00" />
+                </div>
+                <div class="row">
+                    <label>Peso</label>
+                    <input id="weight" value="0.00" placeholder="0.00" />
+                </div>
+                <div class="actions">
+                    <button type="submit" class="primary-action">
+                        Calcular
+                    </button>
                 </div>
             </div>
-            <div class="result">
-                <label>Seu IMC &eacute;:</label>&nbsp;<span id="imc">N/A</span>
-            </div>
         </div>
-    </body>
-    <script lang="text/javascript" src="index.js"></script>
+        <div class="result">
+            <label>Seu IMC &eacute;:</label>&nbsp;<span id="imc">N/A</span>
+        </div>
+    </div>
+</body>
+<script lang="text/javascript" src="index.js"></script>
+
 </html>
