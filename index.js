@@ -1,3 +1,48 @@
+function createRequest() {
+    var r = null;
+
+    try {
+        r = new XMLHttpRequest();
+    } catch(tryMS) {
+        try {
+            r = new ActiveXObject("Msxml2.XMLHTTP");
+        } catch (otherMS) {
+            try {
+                r = new ActiveXObject("Microsoft.XMLHTTP");
+            } catch (failed) {
+                console.warn("no way to create request obj");
+            }
+        }
+    }
+
+    return r;
+}
+
+function handleCalculateImcResponse() {
+    console.log(this);
+    if (this.readyState == 4) {
+        if (this.status == 200) {
+            var p = JSON.parse(this.responseText);
+            if (p) {
+                this.renderFc(p.imc + " " + p.imcDescription);
+            }
+        } else {
+            throw Error("well, this is bad... sth wrong at backend...");
+        }
+    }
+}
+
+function calculateImcApi(renderFunction) {
+    request = createRequest();
+    if (!request) return null;
+
+    request.renderFc = renderFunction;
+    request.onreadystatechange = handleCalculateImcResponse.bind(request);
+    request.open("POST", "http://localhost:8080/imc/calculate", true);
+    request.setRequestHeader("Content-Type", "application/json");
+    request.send(JSON.stringify(this));
+}
+
 function Person(height, weight) {
     if (typeof(height) !== "number" || isNaN(height))
         throw Error("height is not a number");
@@ -14,22 +59,13 @@ function Person(height, weight) {
 
 function Dietician(height, weight) {
     Person.call(this, height, weight);
-    this.imc = function() {
-        var imcValue = this.weight / this.height ** 2;
-        var imcText = doTranslateImc(imcValue);
-        return imcValue + " " + imcText;
+    this.imc = function(renderFunction) {
+        calculateImcApi.call(this, renderFunction);
     }
 }
 
 Dietician.prototype = Object.create(Person.prototype);
 Dietician.prototype.constructor = Dietician;
-
-function doTranslateImc(imc) {
-    if (imc < 18.5) return "magreza";
-    else if (imc < 24.9) return "normal";
-    else if (imc < 30) return "sobrepeso";
-    else return "obesidade";
-}
 
 function renderText(text, targetId) {
     document.getElementById(targetId).innerHTML = text;
@@ -43,7 +79,8 @@ function buildCalculateImc() {
         console.log(evt);
         var weight = parseFloat(weightElement.value);
         var height = parseFloat(heightElement.value);
-        renderText(new Dietician(height, weight).imc(), "imc");
+        new Dietician(height, weight)
+            .imc(function(txt){ renderText(txt, "imc"); })
     }
 }
 
