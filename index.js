@@ -1,11 +1,10 @@
-function renderText(text, targetId) {
-  document.getElementById(targetId).innerHTML = text;
-}
-
 function buildCalculateImc() {
   var weightElement = document.getElementById("weight");
   var heightElement = document.getElementById("height");
-  var imcController = new ImcController();
+  var imcView = new ImcView();
+  imcView.onLoad();
+  const imcController = new ImcController();
+  const state = imcView.observe({person: new Person(0.1,0.1)});
 
   return async function (evt) {
     console.log(evt);
@@ -13,7 +12,9 @@ function buildCalculateImc() {
     var height = parseFloat(heightElement.value);
     var p = new Person(height, weight);
     var personResult = await imcController.calculate(p);
-    renderText(`${personResult.imc} ${personResult.imcDescription}`, "imc");
+    p.imc = personResult.imc;
+    p.imcDescription = personResult.imcDescription;
+    state.person = p;
   };
 }
 

@@ -12,6 +12,7 @@ class Person {
       this.height = theHeight;
       this.weight = theWeight;
       this.imc = null;
+      this.imcDescription = "N/A";
     }
   
     isValid() {
@@ -40,6 +41,14 @@ class Person {
   
     set imc(theImc) {
       this._imc = theImc;
+    }
+
+    get imcDescription() {
+      return this._imcDescription;
+    }
+
+    set imcDescription(theImcDescription) {
+      this._imcDescription = theImcDescription;
     }
 
     toObj() {
