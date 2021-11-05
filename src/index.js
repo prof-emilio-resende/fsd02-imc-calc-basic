@@ -1,4 +1,7 @@
-import "./index.css";
+import ProxyPolyfillBuilder from "proxy-polyfill/src/proxy";
+window.Proxy = ProxyPolyfillBuilder();
+
+import "./index.scss";
 
 import ImcView from "./views/ImcView.js";
 import ImcController from "./controller/ImcController.js";
