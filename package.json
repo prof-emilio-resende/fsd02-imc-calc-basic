@@ -2,8 +2,10 @@
   "name": "web-calc",
   "version": "1.0.0",
   "description": "funny fit project",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
+    "build": "cross-env webpack --mode=development --progress --config webpack.config.js",
+    "build-prd": "cross-env webpack --mode=production --progress --config webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,7 +23,12 @@
     "url": "https://github.com/prof-emilio-resende/fsd02-imc-calc-basic/issues"
   },
   "homepage": "https://github.com/prof-emilio-resende/fsd02-imc-calc-basic#readme",
-  "dependencies": {
-    "systemjs": "^6.11.0"
+  "dependencies": {},
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "html-webpack-plugin": "^5.5.0",
+    "webpack": "^5.61.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.4.0"
   }
 }
