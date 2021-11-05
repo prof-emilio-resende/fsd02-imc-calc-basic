@@ -1,3 +1,7 @@
+import ImcView from "./views/ImcView.js";
+import ImcController from "./controller/ImcController.js";
+import Person from "./domain/Person.js";
+
 function buildCalculateImc() {
   var weightElement = document.getElementById("weight");
   var heightElement = document.getElementById("height");

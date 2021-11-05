@@ -1,4 +1,7 @@
-class ImcView extends ViewComponent {
+import ViewComponent from "../framework/ViewComponent.js";
+import Person from "../domain/Person.js";
+
+export default class ImcView extends ViewComponent {
   constructor() {
     super();
     this.state = { person: new Person(0.1, 0.1) };

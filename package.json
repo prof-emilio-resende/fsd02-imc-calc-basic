@@ -1,0 +1,27 @@
+{
+  "name": "web-calc",
+  "version": "1.0.0",
+  "description": "funny fit project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prof-emilio-resende/fsd02-imc-calc-basic.git"
+  },
+  "keywords": [
+    "fit",
+    "react",
+    "frontend"
+  ],
+  "author": "emilio.resende",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/prof-emilio-resende/fsd02-imc-calc-basic/issues"
+  },
+  "homepage": "https://github.com/prof-emilio-resende/fsd02-imc-calc-basic#readme",
+  "dependencies": {
+    "systemjs": "^6.11.0"
+  }
+}

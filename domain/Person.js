@@ -1,4 +1,4 @@
-class Person {
+export default class Person {
     constructor(theHeight, theWeight) {
       if (typeof theHeight !== "number" || isNaN(theHeight))
         throw Error("height is not a number");

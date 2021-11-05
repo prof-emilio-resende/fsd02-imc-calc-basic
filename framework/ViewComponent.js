@@ -1,4 +1,4 @@
-class ViewComponent {
+export default class ViewComponent {
   constructor() {
     console.log(
       `initializing the ViewComponent... ${this.__proto__.constructor.name}`
