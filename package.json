@@ -4,6 +4,7 @@
   "description": "funny fit project",
   "main": "src/index.js",
   "scripts": {
+    "start": "cross-env webpack serve --mode=development --progress --config webpack.config.js",
     "build": "cross-env webpack --mode=development --progress --config webpack.config.js",
     "build-prd": "cross-env webpack --mode=production --progress --config webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -26,7 +27,9 @@
   "dependencies": {},
   "devDependencies": {
     "cross-env": "^7.0.3",
+    "css-loader": "^6.5.1",
     "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.4.4",
     "webpack": "^5.61.0",
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.4.0"
