@@ -1,9 +1,14 @@
+import React from "react"
+import ReactDOM from "react-dom"
+
 export default class ViewComponent {
   constructor(bindName) {
     console.log(
       `initializing the ViewComponent... ${bindName}`
     );
-    this.state = {};
+    this.state = {
+      bindName
+    };
     this.element = document.querySelector(bindName);
   }
 
@@ -12,7 +17,13 @@ export default class ViewComponent {
   }
 
   paint() {
-    this.element.innerHTML = this.render();
+    console.log("framework running react create element...")
+    const el = React.createElement("div",
+      { id: this.state.bindName, className: "react-div" },
+      this.render())
+
+    console.log("painting to the DOM...")
+    ReactDOM.render(el, this.element)
   }
 
   render() {

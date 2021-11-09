@@ -1,3 +1,5 @@
+import React from "react";
+
 import ViewComponent from "../framework/ViewComponent.js";
 import Person from "../domain/Person.js";
 
@@ -16,10 +18,10 @@ export default class ImcView extends ViewComponent {
   }
 
   render() {
-    return '<div class="result">'
-      + '<label>Seu IMC &eacute;:</label>'
-      + `${this.state.person.imc}&nbsp;<span id="imc">`
-      + `${this.state.person.imcDescription}</span>`
-      + '</div>';
+    return (<div className="result">
+      <label>Seu IMC &eacute;:</label>
+      {this.state.person.imc}&nbsp;
+      <span id="imc">{this.state.person.imcDescription}</span>
+    </div>)
   }
 }

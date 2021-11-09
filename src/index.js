@@ -3,7 +3,7 @@ window.Proxy = ProxyPolyfillBuilder();
 
 import "./index.scss";
 
-import ImcView from "./views/ImcView.js";
+import ImcView from "./views/ImcView.jsx";
 import ImcController from "./controller/ImcController.js";
 import Person from "./domain/Person.js";
 

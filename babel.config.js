@@ -13,7 +13,8 @@ module.exports = {
           ie: "11",
         }
       }
-    ]
+    ],
+    "@babel/preset-react"
   ],
   plugins: [
     "@babel/transform-runtime",
