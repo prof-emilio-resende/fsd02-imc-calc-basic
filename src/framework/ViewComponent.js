@@ -1,10 +1,10 @@
 export default class ViewComponent {
-  constructor() {
+  constructor(bindName) {
     console.log(
-      `initializing the ViewComponent... ${this.__proto__.constructor.name}`
+      `initializing the ViewComponent... ${bindName}`
     );
     this.state = {};
-    this.element = document.querySelector(this.__proto__.constructor.name);
+    this.element = document.querySelector(bindName);
   }
 
   onLoad() {

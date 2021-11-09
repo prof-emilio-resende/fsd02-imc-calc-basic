@@ -3,7 +3,7 @@ import Person from "../domain/Person.js";
 
 export default class ImcView extends ViewComponent {
   constructor() {
-    super();
+    super("ImcView"); // the name must be explicit to circumvent minify issues
     this.state = { person: new Person(0.1, 0.1) };
   }
 

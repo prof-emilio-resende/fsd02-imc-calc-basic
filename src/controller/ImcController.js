@@ -1,10 +1,14 @@
-import ImcDriver from "../drivers/ImcDriver.js";
 export default class ImcController {
     constructor() {
-        this.imcDriver = new ImcDriver();
+        this.imcDriver = null;
     }
 
     async calculate(person) {
+        if (!this.imcDriver) {
+            const { default: ImcDriver } = await import("../drivers/ImcDriver.js")
+            this.imcDriver = new ImcDriver();
+        }
+
         return await this.imcDriver.calculate(person);
     }
 }
