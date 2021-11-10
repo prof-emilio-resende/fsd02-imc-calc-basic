@@ -1,20 +1,19 @@
 import React from "react";
+import ImcController from "../controller/ImcController.js";
 
-import ViewComponent from "../framework/ViewComponent.js";
-import Person from "../domain/Person.js";
-
-export default class ImcView extends ViewComponent {
+export default class ImcView extends React.Component {
   constructor() {
-    super("ImcView"); // the name must be explicit to circumvent minify issues
-    this.state = { person: new Person(0.1, 0.1) };
+    super();
+    this.state = { person: {} };
+    this.controller = new ImcController();
   }
 
-  updateState(state) {
-    const newState = {
-      ...this.state,
-      ...state
-    }
-    super.updateState(newState);
+  async componentDidUpdate(prevProps, prevState) {
+    if (this.props.person.height !== prevProps.person.height
+      || this.props.person.weight !== prevProps.person.weight) {
+        const newPerson = await this.controller.calculate(this.props.person);
+        this.setState({person: newPerson})
+      }
   }
 
   render() {

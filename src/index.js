@@ -1,40 +1,67 @@
 import ProxyPolyfillBuilder from "proxy-polyfill/src/proxy";
 window.Proxy = ProxyPolyfillBuilder();
 
+import React from "react";
+import ReactDOM from "react-dom";
+import ImcView from "./views/ImcView.jsx";
+import Person from "./domain/Person.js";
 import "./index.scss";
 
-import ImcView from "./views/ImcView.jsx";
-import ImcController from "./controller/ImcController.js";
-import Person from "./domain/Person.js";
+function initialize() {
+  ReactDOM.render(<App />, document.getElementById("app"));
+}
 
-(function() {
-  var imcView = new ImcView();
-  const imcController = new ImcController();
-
-  function buildCalculateImc() {
-    var weightElement = document.getElementById("weight");
-    var heightElement = document.getElementById("height");
-    
-    const state = imcView.observe({person: new Person(0.1,0.1)});
-  
-    return async function (evt) {
-      console.log(evt);
-      var weight = parseFloat(weightElement.value);
-      var height = parseFloat(heightElement.value);
-      var p = new Person(height, weight);
-      var personResult = await imcController.calculate(p);
-      p.imc = personResult.imc;
-      p.imcDescription = personResult.imcDescription;
-      state.person = p;
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      person: {},
     };
   }
-  
-  window.onload = function () {
-    console.log("loading...");
-    var btn = document.querySelector(
-      ".data .form .actions button.primary-action"
+
+  calculate() {
+    console.log(this);
+    const heightElem = document.querySelector("#height");
+    const weightElem = document.querySelector("#weight");
+
+    if (!heightElem) throw Error("height can't be found.");
+    if (!weightElem) throw Error("height can't be found.");
+
+    const newPerson = new Person(
+      parseFloat(heightElem.value),
+      parseFloat(weightElem.value)
     );
-    btn.addEventListener("click", buildCalculateImc());
-    imcView.onLoad();
-  };
-})();
+    this.setState({person: newPerson})
+  }
+
+  render() {
+    return (
+      <>
+        <div className="data">
+          <div className="form">
+            <div className="row">
+              <label>Altura</label>
+              <input id="height" name="height" placeholder="0.00" />
+            </div>
+            <div className="row">
+              <label>Peso</label>
+              <input id="weight" placeholder="0.00" />
+            </div>
+            <div className="actions">
+              <button
+                type="button"
+                className="primary-action"
+                onClick={this.calculate.bind(this)}
+              >
+                Calcular
+              </button>
+            </div>
+          </div>
+        </div>
+        <ImcView className="result" person={this.state.person} />
+      </>
+    );
+  }
+}
+
+initialize();
